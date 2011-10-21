@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     just_serve_it (0.0.1)
-      activesupport
-      mongoid
-      renee
+      bson_ext (~> 1.4)
+      mongoid (~> 2.3.2)
+      renee (~> 0.1.1)
 
 GEM
   remote: http://rubygems.org/
@@ -16,6 +16,7 @@ GEM
     activesupport (3.1.1)
       multi_json (~> 1.0)
     bson (1.4.1)
+    bson_ext (1.4.1)
     builder (3.0.0)
     i18n (0.6.0)
     mongo (1.4.1)

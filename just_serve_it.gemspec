@@ -17,9 +17,8 @@ Gem::Specification.new do |s|
     ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "activesupport" , "~> 3.1.1"
+  s.add_dependency "bson_ext"      , "~> 1.4"
   s.add_dependency "mongoid"       , "~> 2.3.2"
   s.add_dependency "renee"         , "~> 0.1.1"
-
 end
 
