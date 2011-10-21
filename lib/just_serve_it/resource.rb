@@ -1,29 +1,15 @@
-require "active_support/inflector/methods"
+require "mongoid"
 
 module JustServeIt
-
   class Resource
+    include Mongoid::Document
+    field :data     , :type => Hash
+    field :resource , :type => Symbol
 
-    attr_reader :app
-
-    def initialize( resource , *opts )
-      build resource
-      @app = ActiveSupport::Inflector.constantize( resource ).new
+    def initialize( resource )
+      super()
+      @resource = resource
     end
-
-    def build( resource )
-      eval <<-___
-        #{ ActiveSupport::Inflector.constantize resource } < Sinatra::Base
-
-          get "/" do
-            head 200
-          end
-
-        end
-      ___
-    end
-
   end
-
 end
 

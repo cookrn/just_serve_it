@@ -1,10 +1,9 @@
+require "just_serve_it"
+
 module Kernel
-
   private
-
   def JustServeIt( *args , &block )
-    JustServieIt.serve *args , &block
+    JustServiIt.serve *args , &block
   end
-
 end
 
