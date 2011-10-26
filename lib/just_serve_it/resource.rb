@@ -1,14 +1,16 @@
 require "mongoid"
 
 module JustServeIt
-  class Resource
-    include Mongoid::Document
-    field :data     , :type => Hash
-    field :resource , :type => Symbol
+  module Resource
+    def self.included( resource_class )
+      class << resource_class
+        include Mongoid::Document
 
-    def initialize( resource )
-      super()
-      @resource = resource
+        field :data     , :type => Hash
+        field :resource , :type => Symbol
+
+        default_scope where( :resource => @resource )
+      end
     end
   end
 end
