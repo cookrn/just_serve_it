@@ -12,7 +12,5 @@ require "#{ ROOT }/config/boot"
 use Rack::CommonLogger
 
 require "just_serve_it"
-app = JustServeIt :thingies
-# raise app.inspect
-run app
+run JustServeIt :thingies , :widgets , :foos
 
