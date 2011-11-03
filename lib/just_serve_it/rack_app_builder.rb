@@ -15,24 +15,31 @@ module JustServeIt
             @resource_class = JustServeIt.find_resource_by_name resource
 
             get do
-              halt "hi #{ resource } index"
+              resource_instances = @resource_class.all
+              respond! resource_instances.to_json , 200 , { "Content-Type" => "application/json" }
             end
 
             post do
-              halt "hi #{ resource } create"
+              resource_instance = @resource_class.create! data: request.params
+              respond! resource_instance.to_json , 201 , { "Content-Type" => "application/json" }
             end
 
             var do | id |
+              @resource_instance = @resource_class.find id
+              halt :not_found unless @resource_instance
+
               get do
-                halt "hi #{resource} #{id} show"
+                respond! @resource_instance.to_json , 200 , { "Content-Type" => "application/json" }
               end
 
               put do
-                halt "hi #{resource} #{id} update"
+                @resource_instance.update_attributes! :data => @resource_instance.data.merge( request.params )
+                respond! @resource_instance.to_json , 200 , { "Content-Type" => "application/json" }
               end
 
               delete do
-                halt "hi #{resource} #{id} destroy"
+                @resource_instance.destroy
+                respond! { status 204 }
               end
             end
           end
