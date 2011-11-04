@@ -30,7 +30,7 @@ module JustServeIt
   end
 
   def self.setup
-    yield self
+    yield self if block_given?
   end
 
   module Resources
