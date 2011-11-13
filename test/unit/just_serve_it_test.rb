@@ -19,5 +19,16 @@ class JustServeItTest < MiniTest::Unit::TestCase
     reload_lib
     assert_equal "test" , JustServeIt.env
   end
+
+  def test_find_resource_by_name_raises_error_if_resource_does_not_exist
+    assert_raises RuntimeError do
+      JustServeIt.find_resource_by_name :bogus
+    end
+  end
+
+  def test_find_resource_by_name_returns_resource_if_exists
+    JustServeIt.resources.bogus = "chili pie"
+    assert_equal "chili pie" , JustServeIt.find_resource_by_name( :bogus )
+  end
 end
 

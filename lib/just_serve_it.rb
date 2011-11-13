@@ -5,7 +5,7 @@ require "map"
 
 module JustServeIt
   mattr_accessor :env
-  @@env = ENV[ "RACK_ENV" ] or "development"
+  @@env = ENV[ "RACK_ENV" ] || "development"
 
   mattr_reader :gem_root
   @@gem_root = File.expand_path File.join( File.dirname( __FILE__ ) , "../" )
